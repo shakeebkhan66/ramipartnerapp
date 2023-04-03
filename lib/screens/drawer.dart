@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'constants/colors.dart';
 import 'myprofile.dart';
 import 'myschedule.dart';
+import 'myworkinghours.dart';
 
 
 class MyDrawer extends StatefulWidget {
@@ -20,22 +20,22 @@ class _MyDrawerState extends State<MyDrawer> {
   String name = "Rami";
   String email = "Rami@gmail.com";
 
-  Future getData() async{
-    User? user = await FirebaseAuth.instance.currentUser;
-    var variable = await FirebaseFirestore.instance.collection("Customers").doc(user?.uid).get();
+  // Future getData() async{
+  //   User? user = await FirebaseAuth.instance.currentUser;
+  //   var variable = await FirebaseFirestore.instance.collection("Customers").doc(user?.uid).get();
+  //
+  //   setState(() {
+  //     name = variable.data()!['username'];
+  //     email = variable.data()!['email'];
+  //   });
+  // }
 
-    setState(() {
-      name = variable.data()!['username'];
-      email = variable.data()!['email'];
-    });
-  }
 
-
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getData();
+  //   super.initState();
+  // }
 
 
 
@@ -47,7 +47,7 @@ class _MyDrawerState extends State<MyDrawer> {
     } else if (currentPage == DrawerSections.myschedule) {
       container = const MyScheduleScreen();
     } else if(currentPage == DrawerSections.myworkinghours){
-      container = const ProfileScreen();
+      container = const MyWorkingHours();
     }else if(currentPage == DrawerSections.logout){
       container = const ProfileScreen();
     }
@@ -123,7 +123,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 currentPage == DrawerSections.myschedule ? true : false),
             const Divider(thickness: 2),
             menuItem(3, "My Working Hours", Icons.calendar_month,
-                currentPage == DrawerSections.profile ? true : false),
+                currentPage == DrawerSections.myworkinghours ? true : false),
             const Divider(thickness: 2),
             menuItem(4, "Logout", Icons.logout_outlined,
                 currentPage == DrawerSections.logout ? true : false

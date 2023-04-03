@@ -14,17 +14,17 @@ class _MyScheduleScreenState extends State<MyScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: singInWithFacebookButtonColor,
-      appBar: AppBar(
-        backgroundColor: backgroundColorLoginScreen,
-        automaticallyImplyLeading: false,
-        title: const Text(
-          "My Schedule",
-          style: TextStyle(
-              color: singInWithGoogleButtonColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 20.0),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: backgroundColorLoginScreen,
+      //   automaticallyImplyLeading: false,
+      //   title: const Text(
+      //     "My Schedule",
+      //     style: TextStyle(
+      //         color: singInWithGoogleButtonColor,
+      //         fontWeight: FontWeight.w600,
+      //         fontSize: 20.0),
+      //   ),
+      // ),
       body: SafeArea(
         child: Column(
           children: [
@@ -93,11 +93,17 @@ class _MyScheduleScreenState extends State<MyScheduleScreen> {
                   const SizedBox(
                     height: 4.0,
                   ),
-                  const Text(
-                    "Status: Waiting for My Confirmation",
-                    style: TextStyle(
-                        color: backgroundColorLoginScreen,
-                        fontSize: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      Icon(Icons.circle,color: Colors.yellow,),
+                       Text(
+                        "Status: Waiting for My Confirmation",
+                        style: TextStyle(
+                            color: backgroundColorLoginScreen,
+                            fontSize: 20.0),
+                      ),
+                    ],
                   ),
                   Divider(
                     color: Colors.grey.withOpacity(0.2),
@@ -212,11 +218,17 @@ class _MyScheduleScreenState extends State<MyScheduleScreen> {
                             const SizedBox(
                               height: 4.0,
                             ),
-                            const Text(
-                              "Status: Waiting for My Confirmation",
-                              style: TextStyle(
-                                  color: backgroundColorLoginScreen,
-                                  fontSize: 20.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: const [
+                                Icon(Icons.circle,color: Colors.blue,),
+                                Text(
+                                  "Status: Waiting for My Confirmation",
+                                  style: TextStyle(
+                                      color: backgroundColorLoginScreen,
+                                      fontSize: 20.0),
+                                ),
+                              ],
                             ),
                           ],
                         ),

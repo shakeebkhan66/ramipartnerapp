@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  MyWorkingHours(),
+        home:  MyDrawer(),
         builder: (context, child) => ResponsiveWrapper.builder(
             child,
             maxWidth: 1200,
