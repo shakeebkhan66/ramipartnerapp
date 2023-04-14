@@ -157,17 +157,17 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        padding: const EdgeInsets.only(bottom: 30),
-        child: const Text(
-          "Become a partner",
-          style: TextStyle(
-              fontSize: 17,
-              decoration: TextDecoration.underline,
-              color: singInWithFacebookButtonColor),
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Container(
+      //   padding: const EdgeInsets.only(bottom: 30),
+      //   child: const Text(
+      //     "Become a partner",
+      //     style: TextStyle(
+      //         fontSize: 17,
+      //         decoration: TextDecoration.underline,
+      //         color: singInWithFacebookButtonColor),
+      //   ),
+      // ),
     );
   }
 }
