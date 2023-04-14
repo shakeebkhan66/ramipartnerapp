@@ -24,9 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var googleProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
-    var facebookProvider = Provider.of<FacebookSignInProvider>(context, listen: false);
-    return googleProvider.isLoading ? Loading() : Scaffold(
+    // var googleProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
+    // var facebookProvider = Provider.of<FacebookSignInProvider>(context, listen: false);
+    return Scaffold(
       backgroundColor: backgroundColorLoginScreen,
       body: SingleChildScrollView(
         child: Column(
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             InkWell(
               onTap: () {
                 // await AuthService().signInWithFacebook();
-                facebookProvider.signInWithFacebook(context);
+                // facebookProvider.signInWithFacebook(context);
               },
               child: Container(
                 height: 60,
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 //             const TextStyle(color: Colors.white, fontSize: 17),
                 //       )));
                 // });
-                googleProvider.googleLogIn(context);
+                // googleProvider.googleLogIn(context);
               },
               child: Container(
                 height: 60,

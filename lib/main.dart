@@ -13,8 +13,8 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 
 void main() async{
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  MyDrawer(),
+        home:  const LoginScreen(),
         builder: (context, child) => ResponsiveWrapper.builder(
             child,
             maxWidth: 1200,
