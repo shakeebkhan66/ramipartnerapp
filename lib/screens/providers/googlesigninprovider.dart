@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../authentication/login_screen.dart';
+import '../drawer.dart';
 import '../myschedule.dart';
 
 
@@ -43,7 +44,7 @@ class GoogleSignInProvider with ChangeNotifier{
                 type: PageTransitionType.topToBottom,
                 duration: const Duration(milliseconds: 1000),
                 alignment: Alignment.bottomCenter,
-                child: const MyScheduleScreen()));
+                child:  MyDrawer()));
       }
 
       final googleAuth = await googleUser.authentication;

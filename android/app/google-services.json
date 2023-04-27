@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:100292600315:android:cf540b5e56d51686702b5e",
+        "mobilesdk_app_id": "1:100292600315:android:266965b8c955f1c3702b5e",
         "android_client_info": {
-          "package_name": "com.example.ramipartnerapp"
+          "package_name": "com.rami.ramipartnerapp"
         }
       },
       "oauth_client": [
@@ -43,26 +43,26 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:100292600315:android:7f6134db638eb4cb702b5e",
+        "mobilesdk_app_id": "1:100292600315:android:9b035ae1072eda28702b5e",
         "android_client_info": {
-          "package_name": "com.example.userapp"
+          "package_name": "com.ramiwosh.userapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "100292600315-h6t3et6m0ijc5stsj65u2shr6k7rf8ch.apps.googleusercontent.com",
+          "client_id": "100292600315-1vguggkt93m4cgbo13sg4r825nk76r7r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.userapp",
+            "package_name": "com.ramiwosh.userapp",
             "certificate_hash": "8260b7e10bc3de24680898823ef6a755c52d4779"
           }
         },
         {
-          "client_id": "100292600315-lobit705nq5ejpdjh2eqcdp1r1hshkfu.apps.googleusercontent.com",
+          "client_id": "100292600315-p4duh06n5hnl6e3seehobm8k2nb0215o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.userapp",
-            "certificate_hash": "27a4aa09bb71ea78ae5b3d7497daf63273a69aaa"
+            "package_name": "com.ramiwosh.userapp",
+            "certificate_hash": "13d6ad817edf7d4f8367dab4e929816005f1a069"
           }
         },
         {

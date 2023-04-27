@@ -8,6 +8,7 @@ import '../constants/colors.dart';
 import '../constants/spinkit.dart';
 import '../providers/facebooksigninprovider..dart';
 import '../providers/googlesigninprovider.dart';
+import 'authservice_screen..dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -24,8 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // var googleProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
-    // var facebookProvider = Provider.of<FacebookSignInProvider>(context, listen: false);
+    var googleProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
+    var facebookProvider = Provider.of<FacebookSignInProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: backgroundColorLoginScreen,
       body: SingleChildScrollView(
@@ -40,9 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 100,
             ),
             InkWell(
-              onTap: () {
-                // await AuthService().signInWithFacebook();
-                // facebookProvider.signInWithFacebook(context);
+              onTap: () async {
+                await AuthService().signInWithFacebook();
+                facebookProvider.signInWithFacebook(context);
               },
               child: Container(
                 height: 60,
@@ -114,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 //             const TextStyle(color: Colors.white, fontSize: 17),
                 //       )));
                 // });
-                // googleProvider.googleLogIn(context);
+                googleProvider.googleLogIn(context);
               },
               child: Container(
                 height: 60,
