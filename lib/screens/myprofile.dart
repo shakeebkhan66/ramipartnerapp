@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../api/api_screen.dart';
 import 'constants/colors.dart';
-import 'drawer.dart';
+import 'constants/customtextfield_screen.dart';
 
 
 class ProfileScreen extends StatefulWidget {
+  static const routeName = '/profileScreen';
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
@@ -11,105 +14,84 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  // TODO Form Key
+  final _formKey = GlobalKey<FormState>();
+
+  // TODO TextEditingControllers
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+
+  // TODO Instance of ApiScreen
+  ApiScreen apiScreen = ApiScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: singInWithFacebookButtonColor,
-      // appBar: AppBar(
-      //   backgroundColor: backgroundColorLoginScreen,
-      //   automaticallyImplyLeading: false,
-      //   title: const Text(
-      //     "My Profile",
-      //     style: TextStyle(
-      //         color: singInWithGoogleButtonColor,
-      //         fontWeight: FontWeight.w600,
-      //         fontSize: 20.0),
-      //   ),
-      //  leading: InkWell(
-      //      onTap: (){
-      //        Navigator.of(context).push(
-      //            MaterialPageRoute(builder: (context) =>  MyDrawer()));
-      //      },
-      //      child: const Icon(Icons.menu,color: Colors.black,),
-      //  ),
-      // ),
-
-      body: SingleChildScrollView(
-        child: SafeArea(child: Column(
-          children: [
-            Container(
-              alignment: Alignment.topLeft,
-              padding: const EdgeInsets.only(left: 25,top: 25),
-              child: const Text(
-                "My Name",
-                style: TextStyle(
-                    color: singInWithGoogleButtonColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15.0),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 7.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Rami",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: backgroundColorLoginScreen),
-                      borderRadius: BorderRadius.circular(8.0),
-                    )
+        backgroundColor: singInWithFacebookButtonColor,
+        body: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomTextFieldScreen(
+                  myController: nameController,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "Field is required";
+                    } else {
+                      return null;
+                    }
+                  },
+                  text: "Enter your nickname",
+                  labelText: "Nickname",
                 ),
-              ),
-            ),
-            const SizedBox(height: 25),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: const EdgeInsets.only(left: 25),
-              child: const Text(
-                "Phone",
-                style: TextStyle(
-                    color: singInWithGoogleButtonColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15.0),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 7.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                    hintText: "+972 4-6282082",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: backgroundColorLoginScreen),
-                      borderRadius: BorderRadius.circular(8.0),
-                    )
+                const SizedBox(
+                  height: 15.0,
                 ),
-              ),
+                CustomTextFieldScreen(
+                  myController: numberController,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "Field is required";
+                    } else {
+                      return null;
+                    }
+                  },
+                  text: "Enter your phone number",
+                  labelText: "Phone Number",
+                ),
+                const SizedBox(height: 30.0,),
+                MaterialButton(
+                  splashColor: backgroundColorLoginScreen1,
+                  hoverColor: backgroundColorLoginScreen,
+                  minWidth: 180.0,
+                  height: 40.0,
+                  color: singInWithGoogleButtonColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(9.0),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      apiScreen.partnerExtraDetails(nameController.text.toString(),
+                          numberController.text.toString(), context);
+                      print("Validate");
+                    } else {
+                      print("Not Validate");
+                    }
+                  },
+                  child: Text(
+                    "Submit",
+                    style: GoogleFonts.oswald(
+                        color: singInWithFacebookButtonColor, fontSize: 20.0),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 530),
-            MaterialButton(
-              onPressed: () {
-              },
-              height: 60,
-              minWidth: 400,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              color: backgroundColorLoginScreen,
-              child: const Text(
-                "Submit",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
-                    color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-        ),
-      ),
+          ),
+        )
     );
   }
 }

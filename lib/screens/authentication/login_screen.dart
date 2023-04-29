@@ -12,6 +12,7 @@ import 'authservice_screen..dart';
 
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/loginScreen';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -158,17 +159,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: Container(
-      //   padding: const EdgeInsets.only(bottom: 30),
-      //   child: const Text(
-      //     "Become a partner",
-      //     style: TextStyle(
-      //         fontSize: 17,
-      //         decoration: TextDecoration.underline,
-      //         color: singInWithFacebookButtonColor),
-      //   ),
-      // ),
     );
   }
 }

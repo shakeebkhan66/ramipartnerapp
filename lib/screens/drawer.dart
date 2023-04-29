@@ -9,6 +9,7 @@ import 'myworkinghours.dart';
 
 
 class MyDrawer extends StatefulWidget {
+  static const routeName = '/myDrawer';
   @override
   _MyDrawerState createState() => _MyDrawerState();
 }
@@ -38,6 +39,51 @@ class _MyDrawerState extends State<MyDrawer> {
   // }
 
 
+  // TODO Text Widget For Changing AppBar
+  Widget appBarText(){
+    if(currentPage == DrawerSections.profile){
+      return const Text(
+        "My Profile",
+        style: TextStyle(
+            color: singInWithGoogleButtonColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 20.0),
+      );
+    } else if (currentPage == DrawerSections.myschedule){
+      return const Text(
+        "My Schedule",
+        style: TextStyle(
+            color: singInWithGoogleButtonColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 20.0),
+      );
+    } else if (currentPage == DrawerSections.myworkinghours){
+      return const Text(
+        "My Workinghours",
+        style: TextStyle(
+            color: singInWithGoogleButtonColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 20.0),
+      );
+    } else if (currentPage == DrawerSections.logout){
+      return const Text(
+        "Logout",
+        style: TextStyle(
+            color: singInWithGoogleButtonColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 20.0),
+      );
+    }
+    else {
+      return const Text(
+        "Dashboard",
+        style: TextStyle(
+            color: singInWithGoogleButtonColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 20.0),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +100,8 @@ class _MyDrawerState extends State<MyDrawer> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundColorLoginScreen,
-        title: const Text(
-          "My Vehicles",
-          style: TextStyle(
-              color: singInWithGoogleButtonColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 20.0),
-        ),
+        iconTheme: const IconThemeData(color: singInWithGoogleButtonColor),
+        title: appBarText(),
       ),
       body: container,
       drawer: Drawer(

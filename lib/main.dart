@@ -1,7 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ramipartnerapp/screens/authentication/login_partner_screen.dart';
 import 'package:ramipartnerapp/screens/authentication/login_screen.dart';
+import 'package:ramipartnerapp/screens/drawer.dart';
+import 'package:ramipartnerapp/screens/myprofile.dart';
+import 'package:ramipartnerapp/screens/myschedule.dart';
+import 'package:ramipartnerapp/screens/myworkinghours.dart';
 import 'package:ramipartnerapp/screens/providers/facebooksigninprovider..dart';
 import 'package:ramipartnerapp/screens/providers/googlesigninprovider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -40,6 +45,14 @@ class MyApp extends StatelessWidget {
             ],
             background: Container(color: const Color(0xFFF5F5F5))),
         initialRoute: "/",
+        routes: {
+          LoginScreen.routeName: (context) => const LoginScreen(),
+          PartnerLoginScreen.routeName: (context) => const PartnerLoginScreen(),
+          ProfileScreen.routeName: (context) => const ProfileScreen(),
+          MyScheduleScreen.routeName: (context) =>  const MyScheduleScreen(),
+          MyWorkingHours.routeName: (context) => const MyWorkingHours(),
+          MyDrawer.routeName: (context) => MyDrawer(),
+        },
       ),
     );
   }

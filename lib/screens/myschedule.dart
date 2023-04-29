@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'constants/colors.dart';
 
 class MyScheduleScreen extends StatefulWidget {
+  static const routeName = '/myScheduleScreen';
   const MyScheduleScreen({Key? key}) : super(key: key);
 
   @override

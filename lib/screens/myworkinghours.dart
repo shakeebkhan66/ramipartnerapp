@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants/colors.dart';
 
 class MyWorkingHours extends StatefulWidget {
+  static const routeName = '/myWorkingHoursScreen';
   const MyWorkingHours({Key? key}) : super(key: key);
 
   @override
