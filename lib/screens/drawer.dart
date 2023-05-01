@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ramipartnerapp/shareedpreference/share_preference.dart';
 import 'constants/colors.dart';
 import 'myprofile.dart';
 import 'myschedule.dart';
@@ -15,28 +16,15 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  var currentPage = DrawerSections.profile;
+  var currentPage = DrawerSections.myschedule;
 
 
-  String name = "Rami";
-  String email = "Rami@gmail.com";
+  String name = "User Name";
+  String emailStatic = "User@gmail.com";
 
-  // Future getData() async{
-  //   User? user = await FirebaseAuth.instance.currentUser;
-  //   var variable = await FirebaseFirestore.instance.collection("Customers").doc(user?.uid).get();
-  //
-  //   setState(() {
-  //     name = variable.data()!['username'];
-  //     email = variable.data()!['email'];
-  //   });
-  // }
+  String? nickName = MySharedPrefClass.preferences?.getString('nickName');
+  String? email = MySharedPrefClass.preferences?.getString('email');
 
-
-  // @override
-  // void initState() {
-  //   getData();
-  //   super.initState();
-  // }
 
 
   // TODO Text Widget For Changing AppBar
@@ -87,6 +75,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
   @override
   Widget build(BuildContext context) {
+
+
     var container;
     if (currentPage == DrawerSections.profile) {
       container = const ProfileScreen();
@@ -121,14 +111,14 @@ class _MyDrawerState extends State<MyDrawer> {
                       color: singInWithFacebookButtonColor
                   ),
                   accountName: Text(
-                    name,
+                    nickName!.isEmpty ? name : nickName! ,
                     style: const TextStyle(
                         color: singInWithGoogleButtonColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w800),
                   ),
                   accountEmail: Text(
-                    email,
+                    email!.isEmpty ? emailStatic : email!,
                     style: const TextStyle(
                       color: singInWithGoogleButtonColor,
                       fontSize: 16,

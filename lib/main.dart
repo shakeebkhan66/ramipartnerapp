@@ -9,13 +9,16 @@ import 'package:ramipartnerapp/screens/myschedule.dart';
 import 'package:ramipartnerapp/screens/myworkinghours.dart';
 import 'package:ramipartnerapp/screens/providers/facebooksigninprovider..dart';
 import 'package:ramipartnerapp/screens/providers/googlesigninprovider.dart';
+import 'package:ramipartnerapp/shareedpreference/share_preference.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  MySharedPrefClass.preferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
             maxWidth: 1200,
             minWidth: 480,
             defaultScale: true,
+
             breakpoints: [
               const ResponsiveBreakpoint.resize(480, name: MOBILE),
               const ResponsiveBreakpoint.autoScale(800, name: TABLET),

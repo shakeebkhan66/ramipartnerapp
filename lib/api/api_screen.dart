@@ -26,6 +26,10 @@ addPartner(String? loginWith, methodUID, password, email, name, photoUrl,offset,
   print("photoUrl $photoUrl");
   print("of set $offset");
 
+
+  MySharedPrefClass.preferences?.setString('nickName', name);
+  MySharedPrefClass.preferences?.setString('email', email);
+
   Map<String, dynamic> addPartnerBody = {
     "loginWith": loginWith,
     "methodUID": methodUID,
@@ -50,7 +54,7 @@ addPartner(String? loginWith, methodUID, password, email, name, photoUrl,offset,
       print("Partner Added Successfully");
       print(data["id"]);
       print(data["result"]);
-      // MySharedPrefClass.preferences!.setString("id", data["id"]);
+      MySharedPrefClass.preferences?.setString("partnerID", data["id"]);
       Fluttertoast.showToast(
           msg: "Partner Added Successfully",
           backgroundColor: Colors.green,
@@ -144,10 +148,10 @@ partnerLogin(String username, password, context) async {
 
     print("My name $name");
     print("My phoneNumber $phoneNumber");
-    print("Id is ${MySharedPrefClass.preferences!.getString("id")}");
+    print("Id is ${MySharedPrefClass.preferences?.getString("partnerID")}");
 
     Map<String, dynamic> addExtraDetails = {
-      "id": MySharedPrefClass.preferences!.getString("id"),
+      "id": MySharedPrefClass.preferences?.getString("partnerID"),
       "nickName": name,
       "preferredPhoneNumber": phoneNumber,
     };
@@ -155,8 +159,11 @@ partnerLogin(String username, password, context) async {
     try {
       final response = await http.post(
         Uri.parse('https://wosh-dev.herokuapp.com/api/partner/addPartnerExtraDetails'),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        body: jsonEncode(addExtraDetails),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(addExtraDetails)
       );
 
       if (response.statusCode == 200) {
@@ -186,11 +193,106 @@ partnerLogin(String username, password, context) async {
           textColor: Colors.white,
           fontSize: 18);
     }
-
-
   }
 
-//  TODO MYSCHEDULE
 
+//  TODO GetPartnerExtraDetails
+
+  // getpartnerExtraDetails(String name, phoneNumber, context) async{
+  //
+  //   print("My name $name");
+  //   print("My phoneNumber $phoneNumber");
+  //   print("Id is ${MySharedPrefClass.preferences?.getString("partnerID")}");
+  //
+  //   Map<String, dynamic> getExtraDetails = {
+  //     "id": MySharedPrefClass.preferences?.getString("partnerID"),
+  //     "nickName": name,
+  //     "preferredPhoneNumber": phoneNumber,
+  //   };
+  //
+  //   try {
+  //     final response = await http.post(
+  //         Uri.parse('https://wosh-dev.herokuapp.com/api/partner/getPartnerExtraDetails'),
+  //         headers: <String, String>{
+  //           'Content-Type': 'application/json',
+  //           'Accept': 'application/json',
+  //         },
+  //         body: jsonEncode(getExtraDetails)
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       var data = jsonDecode(response.body.toString());
+  //       print("Data $data");
+  //       print("Extra Details get");
+  //       Fluttertoast.showToast(
+  //           msg: "Extra Details get",
+  //           backgroundColor: Colors.green,
+  //           textColor: Colors.white,
+  //           fontSize: 18);
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => MyDrawer()));
+  //     } else {
+  //       print("Failed");
+  //       Fluttertoast.showToast(
+  //           msg: response.body,
+  //           backgroundColor: Colors.redAccent,
+  //           textColor: Colors.white,
+  //           fontSize: 18);
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //     Fluttertoast.showToast(
+  //         msg: e.toString(),
+  //         backgroundColor: Colors.redAccent,
+  //         textColor: Colors.white,
+  //         fontSize: 18);
+  //   }
+  // }
+
+// TODO mySchedule
+  mySchedule() async {
+
+    print("Id is ${MySharedPrefClass.preferences?.getString("partnerID")}");
+
+    Map<String, dynamic> mySchedule = {
+      "id": MySharedPrefClass.preferences?.getString("partnerID"),
+    };
+
+    try {
+      final response = await http.post(
+          Uri.parse('https://wosh-dev.herokuapp.com/api/partner/getSchedule'),
+          headers: <String, String>{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: jsonEncode(mySchedule)
+      );
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print("Data $data");
+        print("MySchedule Details");
+        Fluttertoast.showToast(
+            msg: "MySchedule Details",
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 18);
+      } else {
+        print("Failed");
+        Fluttertoast.showToast(
+            msg: response.body,
+            backgroundColor: Colors.redAccent,
+            textColor: Colors.white,
+            fontSize: 18);
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          backgroundColor: Colors.redAccent,
+          textColor: Colors.white,
+          fontSize: 18);
+    }
+  }
 
 }

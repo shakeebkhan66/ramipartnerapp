@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ramipartnerapp/api/api_screen.dart';
 import 'constants/colors.dart';
 
 class MyScheduleScreen extends StatefulWidget {
@@ -11,21 +12,13 @@ class MyScheduleScreen extends StatefulWidget {
 }
 
 class _MyScheduleScreenState extends State<MyScheduleScreen> {
+
+  ApiScreen apiScreen = ApiScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: singInWithFacebookButtonColor,
-      // appBar: AppBar(
-      //   backgroundColor: backgroundColorLoginScreen,
-      //   automaticallyImplyLeading: false,
-      //   title: const Text(
-      //     "My Schedule",
-      //     style: TextStyle(
-      //         color: singInWithGoogleButtonColor,
-      //         fontWeight: FontWeight.w600,
-      //         fontSize: 20.0),
-      //   ),
-      // ),
       body: SafeArea(
         child: Column(
           children: [
@@ -115,6 +108,7 @@ class _MyScheduleScreenState extends State<MyScheduleScreen> {
                     children: [
                       MaterialButton(
                         onPressed: () {
+                          apiScreen.mySchedule();
                           Navigator.pop(context);
                         },
                         minWidth: 150,
