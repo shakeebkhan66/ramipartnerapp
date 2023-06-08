@@ -1,12 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ramipartnerapp/shareedpreference/share_preference.dart';
+import 'package:provider/provider.dart';
+import 'package:ramipartnerapp/screens/api/api_screen.dart';
+import 'package:ramipartnerapp/screens/authentication/logout_screen.dart';
+import 'package:ramipartnerapp/screens/constants/spinkit.dart';
+import 'package:ramipartnerapp/screens/providers/dayslist_provider.dart';
+import 'package:ramipartnerapp/screens/providers/updateworkinghours_provider.dart';
+import 'package:ramipartnerapp/screens/shareedpreference/share_preference.dart';
 import 'constants/colors.dart';
+import 'constants/logout_screen.dart';
 import 'myprofile.dart';
 import 'myschedule.dart';
 import 'myworkinghours.dart';
+import 'notifications/notification_services.dart';
 
 
 class MyDrawer extends StatefulWidget {
@@ -17,7 +23,6 @@ class MyDrawer extends StatefulWidget {
 
 class _MyDrawerState extends State<MyDrawer> {
   var currentPage = DrawerSections.myschedule;
-
 
   String name = "User Name";
   String emailStatic = "User@gmail.com";
@@ -73,9 +78,52 @@ class _MyDrawerState extends State<MyDrawer> {
     }
   }
 
+
+  // TODO List Button
+  List<Widget> buttonList = <Widget>[
+    Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
+        child: Builder(
+          builder: (BuildContext context){
+
+            // TODO INSTANCE OF API SCREEN
+            ApiScreen apiScreen = ApiScreen();
+
+            final daysList = Provider.of<DaysListProvider>(context).daysList;
+            final updateProvider = Provider.of<UpdateWorkingHoursProvider>(context, listen: false);
+
+            return MaterialButton(
+              onPressed: () {
+
+                print("Shaki ${apiScreen.daysList}");
+
+                updateProvider.postUpdateWorkingHours(
+                  MySharedPrefClass.preferences?.getString("partnerID").toString(),
+                    daysList,
+                  context
+                );
+              },
+              minWidth: 90,
+              color: singInWithFacebookButtonColor,
+              child: updateProvider.isLoading ? Loading() : const Text(
+                "Done",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                    color: singInWithGoogleButtonColor),
+              ),
+            );
+          },
+        )
+    )
+  ];
+
+  // TODO List Button
+  List<Widget> emptyList = <Widget>[];
+
+
   @override
   Widget build(BuildContext context) {
-
 
     var container;
     if (currentPage == DrawerSections.profile) {
@@ -85,13 +133,14 @@ class _MyDrawerState extends State<MyDrawer> {
     } else if(currentPage == DrawerSections.myworkinghours){
       container = const MyWorkingHours();
     }else if(currentPage == DrawerSections.logout){
-      container = const ProfileScreen();
+      container =  const LogoutScreen();
     }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundColorLoginScreen,
         iconTheme: const IconThemeData(color: singInWithGoogleButtonColor),
         title: appBarText(),
+        actions: currentPage == DrawerSections.myworkinghours ? buttonList : emptyList,
       ),
       body: container,
       drawer: Drawer(
