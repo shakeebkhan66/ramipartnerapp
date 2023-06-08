@@ -124,7 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     itemCount: detailsList.length,
                     itemBuilder: (context, index) {
                       print("List ${data.length}");
-                      print("List1 ${data[index]}");
+                      print("List1 ${detailsList[index].nickName.toString()}");
                       nameController.text =
                           detailsList[index].nickName.toString();
                       numberController.text = detailsList[index].preferredPhoneNumber
@@ -134,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const SizedBox(
-                            height: 200.0,
+                            height: 130.0,
                           ),
                           CustomTextFieldScreen(
                             myController: nameController,
@@ -166,7 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const SizedBox(
                             height: 30.0,
                           ),
-                          detailsList.length != null ? Container()
+                          detailsList[index].nickName.toString().isNotEmpty ? Container()
                               : MaterialButton(
                             splashColor: backgroundColorLoginScreen1,
                             hoverColor: backgroundColorLoginScreen,
